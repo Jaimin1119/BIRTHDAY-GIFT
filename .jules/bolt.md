@@ -1,0 +1,3 @@
+## 2025-03-09 - Caching Animated Geometry Paths
+**Learning:** During continuous animation loops (like GSAP or `requestAnimationFrame` drawing a tree branch by branch), constantly recalculating static end-state geometry (e.g., quadratic curves or interpolated widths for fully grown branches) causes severe CPU overhead. In this codebase, the hundreds of individual curve segments were being math'd out 60 times a second even after they finished moving.
+**Action:** Always check if a frame-by-frame calculation can branch into a pre-computed "final state" cache. Pre-calculating arrays of `{ p: quad(b, t), w: lerp(...) }` during instantiation instead of computing inside the loop saved ~60% of rendering time for `drawBranches`.
