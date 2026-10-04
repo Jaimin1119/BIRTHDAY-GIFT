@@ -1,0 +1,3 @@
+## 2024-08-28 - Caching Static Canvas Geometry
+**Learning:** Found that fully-grown static geometry in the animation loop was being redundantly calculated on every frame instead of being cached. Specifically, `drawBranches` was redundantly evaluating quadratic curve segments (`quad(b, tt)`) for branches that had already finished animating, causing unnecessary CPU overhead inside `requestAnimationFrame`.
+**Action:** When animating paths that eventually hold static, pre-calculate their finished geometry when they are created, and only dynamically calculate the actively-growing segment during the render loop.
