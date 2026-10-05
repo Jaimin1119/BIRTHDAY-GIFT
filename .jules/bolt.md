@@ -1,0 +1,3 @@
+## 2024-10-18 - Caching Static Geometry in Canvas render loops
+**Learning:** Canvas rendering performance heavily relies on caching static or fully-grown geometry (e.g., quadratic curve segments, widths, gradients) during `requestAnimationFrame` loops. Calculating these properties (like bezier curve paths) repeatedly on every frame when they are not changing causes severe CPU overhead.
+**Action:** When working with canvas animations, check if path geometry or computed properties like line widths remain static after a growth phase. If so, precompute and cache them per entity to drastically reduce per-frame CPU usage.
