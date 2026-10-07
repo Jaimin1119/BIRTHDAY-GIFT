@@ -1,0 +1,3 @@
+## 2024-10-07 - Cached Canvas Geometry for Static Animations
+**Learning:** In canvas applications with continuous `requestAnimationFrame` loops, repeatedly recalculating curves (like bezier segments and dynamic line widths) for objects that have finished their animation sequence causes severe and unnecessary CPU overhead.
+**Action:** When animating complex geometries that eventually reach a static state, lazily calculate and cache the final coordinates and widths on the object itself once its animation progress reaches 100%. Then, use a fast path to render the cached segments on subsequent frames.
