@@ -1,0 +1,3 @@
+## 2024-11-23 - Canvas Path2D Geometry Caching
+**Learning:** Canvas rendering performance in this application (specifically in `birthday.js`) relies heavily on caching static or fully-grown geometry (e.g., quadratic curve segments, widths, gradients) during `requestAnimationFrame` loops. Continually recalculating curve coordinates and pushing drawing instructions for static elements causes severe CPU overhead and garbage collection pressure.
+**Action:** When working with Canvas 2D animations containing static components (like fully grown tree branches), proactively identify states where properties no longer change. Calculate their final geometry once, cache it using `Path2D` or similar structures, and use the cached paths for all subsequent frames.
