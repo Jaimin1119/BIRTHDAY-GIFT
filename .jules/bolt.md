@@ -1,0 +1,3 @@
+## 2023-10-17 - Canvas Rendering Performance in RequestAnimationFrame
+**Learning:** In GSAP/Canvas apps where the animation state holds for a long duration or repeats elements (like branches growing via quadratic curves), calculating math like `quad()` repeatedly for statically fully grown geometry causes severe CPU overhead.
+**Action:** Always check if a geometry recalculation depends on a dynamic time parameter or if it has reached a terminal value (e.g. `e == 1`). If it is static or fully grown, cache its computed attributes (points, widths, segments) into an array so that the rendering loop only performs drawing calls rather than both math computation and drawing.
