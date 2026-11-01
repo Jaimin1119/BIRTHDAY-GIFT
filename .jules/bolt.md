@@ -1,0 +1,3 @@
+## 2024-11-01 - Canvas Performance: Caching Branch Geometry Points
+**Learning:** In a heavily animated Vanilla Canvas 2D application like this birthday tree, recalculating bezier curves and interpolation values (like `quad()` and `lerp()` for width) every single frame within `requestAnimationFrame` creates unnecessary CPU load. Branches are static curves drawn progressively.
+**Action:** When animating static geometry on Canvas via `requestAnimationFrame`, always try to cache the point/width information (e.g. at the `steps` boundaries) during the first execution to significantly reduce repetitive floating-point math on subsequent frames.
