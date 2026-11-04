@@ -1,0 +1,3 @@
+## 2024-11-04 - Cache fully-grown canvas geometry in rAF loops
+**Learning:** In canvas rendering for animations with growing elements (like tree branches), recalculating complex paths (`quad`) and widths (`lerp`) every frame becomes a severe CPU bottleneck once elements stop moving but continue to be rendered.
+**Action:** When an element reaches its final visual state (`f >= 1`), cache its static drawing instructions (segment points and line widths) in memory and reuse the cache to bypass redundant math on every subsequent `requestAnimationFrame` loop.
