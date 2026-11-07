@@ -1,0 +1,3 @@
+## 2025-02-15 - Cache fully-grown Canvas paths in tree renderer
+**Learning:** In GSAP/Vanilla Canvas apps doing complex procedural geometry on every frame, re-evaluating equations for static, already-animated components (like fully-grown tree branch segments) creates severe CPU bottleneck due to 1000s of redundant math calls.
+**Action:** When interpolating geometry progressively over frames (e.g., curves being drawn), always lazily precompute and cache the static/completed segments of the geometry into the original object. On subsequent frames, directly draw the cached static segments and only recompute the math for the single actively animating tip.
