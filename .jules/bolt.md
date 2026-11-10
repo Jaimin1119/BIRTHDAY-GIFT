@@ -1,0 +1,3 @@
+## 2024-11-10 - Canvas Animation Geometry Caching
+**Learning:** Canvas rendering performance in `birthday.js` heavily relies on caching static or fully-grown geometry (e.g., quadratic curve segments, widths, gradients) during `requestAnimationFrame` loops to prevent severe CPU overhead from redundant calculations. Calculating values dynamically on every frame can quickly become a performance bottleneck.
+**Action:** When working on canvas animations with many elements, always look for opportunities to pre-calculate and cache complex geometries or values that do not change from frame to frame, rather than recalculating them dynamically.
